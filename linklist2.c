@@ -62,6 +62,7 @@ void insert(int new){
         while(curr->next != NULL){
             curr = curr->next;
         }
+        curr->next = tmp;
     }
 }
 
