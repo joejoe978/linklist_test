@@ -28,6 +28,9 @@ int main(void)
     insert(7);
     insert(9);
     print();
+    delete(7);
+    delete(3);
+    print();
     return 0;
 }
 
@@ -67,7 +70,16 @@ void insert(int new){
 }
 
 void delete(int old){
+    struct Node *pre ;
+    MALLOC(pre,sizeof(struct Node));
 
+    pre->next = head;
+    while((pre->next)->id != old){
+        pre = pre->next;
+    }
+    struct Node *tmp = pre->next ;
+    pre->next = tmp->next;
+    free(tmp);
 }
 
 void print(){
