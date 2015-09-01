@@ -12,11 +12,8 @@ int main(){
 
     head = NULL ;
     insert(0);
-    print();
     insert(1);
-    print();
     insert(4);
-    print();
     insert(2);
     print();
     delete(2);
