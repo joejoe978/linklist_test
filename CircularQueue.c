@@ -6,7 +6,7 @@ int *Q;
 int Head=0, Tail=0, Number_of_Items = 0,n;
 
 
-main(){
+int main(){
     int i,tmp1,tmp2 ;
     printf("input array size: ");
     scanf("%d",&n);
