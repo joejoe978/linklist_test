@@ -17,10 +17,8 @@ int main(){
     insert(2);
     print();
     delete(2);
-    print();
     delete(5);
     delete(1);
-    print();
     delete(0);
     print();
     delete(2);
