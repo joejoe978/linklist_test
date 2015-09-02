@@ -12,10 +12,12 @@ int main(){
 
     head = NULL ;
     insert(0);
-    insert(1);
-    insert(4);
     insert(2);
+    insert(5);
     print();
+    insert(4);
+    print();
+    delete(1);
     delete(2);
     delete(5);
     delete(1);
@@ -24,6 +26,7 @@ int main(){
     delete(2);
     delete(4);
     print();
+    delete();
     return 0;
 
 }
@@ -31,12 +34,26 @@ int main(){
 void insert(int x){
     node *newNode = (node*)malloc(sizeof(node));
     newNode->data = x;
-    newNode->next = NULL;
 
     if(head == NULL || head->data >= x){
         newNode->next = head ;
         head = newNode;
     }
+    else{
+        node *current;
+        current = head;
+        while(1){
+            if(current->next == NULL || current->next->data >= x){
+                newNode->next = current->next;
+                current->next = newNode;
+                break;
+            }
+            else
+                current = current -> next;
+        }
+    }
+
+    /*
     else{
         node *currNode = (node*)malloc(sizeof(node));
         currNode = head;
@@ -55,11 +72,38 @@ void insert(int x){
                 currNode = currNode->next;
             }
         }
-    }
+    }*/
+
+
 }
 
 void delete(int x){
-    node *tmp = (node*)malloc(sizeof(node));
+    node *curr = head;
+    if (curr == NULL){
+        printf("Can't delete! Link-list is empty now! \n");
+        return ;
+    }
+    if (head->data == x){
+        head = head->next;
+        return;
+    }
+
+    while(curr->next != NULL){
+        if(curr->next->data > x){
+            printf("there is no data %d !\n",x);
+            return;
+        }
+        else if(curr->next->data == x){
+            curr->next = curr->next->next;
+            return;
+        }
+        else{
+            curr = curr->next;
+        }
+    }
+    printf("Search down! There is no data %d!\n",x);
+
+    /*node *tmp = (node*)malloc(sizeof(node));
 
     if (head->data == x){
         tmp = head;
@@ -67,8 +111,7 @@ void delete(int x){
         free(tmp);
     }
     else{
-        node *curr = (node*)malloc(sizeof(node));
-        curr = head;
+        node *curr = head ;
 
         while(curr->next != NULL){
             if((curr->next)->data == x){
@@ -82,7 +125,7 @@ void delete(int x){
             }
         }
         printf("Search down! There is no data %d! \n",x);
-    }
+    }*/
 }
 
 void print(){
