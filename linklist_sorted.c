@@ -78,30 +78,34 @@ void insert(int x){
 }
 
 void delete(int x){
-    node *curr = head;
+    node *curr = head, *ans;
     if (curr == NULL){
         printf("Can't delete! Link-list is empty now! \n");
-        return ;
+        return;
     }
     if (head->data == x){
+        ans = head;
         head = head->next;
+        free(ans);
         return;
     }
 
     while(curr->next != NULL){
         if(curr->next->data > x){
             printf("there is no data %d !\n",x);
-            return;
+            return ;
         }
         else if(curr->next->data == x){
-            curr->next = curr->next->next;
-            return;
+            ans = curr->next;
+            curr->next = ans->next;
+            free(ans);
         }
         else{
             curr = curr->next;
         }
     }
     printf("Search down! There is no data %d!\n",x);
+    return ;
 
     /*node *tmp = (node*)malloc(sizeof(node));
 
