@@ -28,12 +28,26 @@ void push(int num){
     size++;
 }
 
-void pop(){
-    struct ListNode* tmp;
+int pop(){
     if(size == 0) return INT_MIN;
-    tmp = top;
+    struct ListNode* tmp = top;
+    int value;
+    value = tmp->val;
     top = tmp->next;
     free(tmp);
+    return value;
+}
+
+struct ListNode* top(){
+    return top;
+}
+
+int size(){
+    return size;
+}
+
+bool empty(){
+    return size==0;
 }
 
 int main(){
