@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 //Definition for singly-linked list.
 struct ListNode {
     int val;
     struct ListNode *next;
 };
-
-struct ListNode* tmp1,*tmp2,*tmp3, *tmp4,*tmp2a,*tmp3a,*tmp4a;
-
+int size = 0;
+struct ListNode *top=NULL,*tmp1,*tmp2,*tmp3,*tmp4,*tmp2a,*tmp3a,*tmp4a;
 
 void print(struct ListNode* now){
     now = tmp1;
@@ -20,22 +20,20 @@ void print(struct ListNode* now){
     //free(now);
 }
 
-struct ListNode* deleteDuplicates(struct ListNode* head) {
-    if(!head) return NULL;
+void push(int num){
+    struct ListNode* node = (struct ListNode*)malloc(sizeof(int));
+    node->val = num;
+    node->next = top;
+    top = node;
+    size++;
+}
 
-    while(head->next!=NULL){
-        if(head->val == head->next->val){
-            struct ListNode* trash;
-            trash = head->next;
-            head->next = trash->next;
-            free(trash);
-            continue;
-        }
-        head = head->next;
-    }
-
-    //print(head);
-    return head;
+void pop(){
+    struct ListNode* tmp;
+    if(size == 0) return INT_MIN;
+    tmp = top;
+    top = tmp->next;
+    free(tmp);
 }
 
 int main(){
@@ -63,9 +61,7 @@ int main(){
     //tmp4a->next = NULL;
 
     struct ListNode *head = tmp1;
-    print(head);
 
-    head = deleteDuplicates(head);
     print(head);
     return 0;
 }
