@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <stdbool.h>
 
 //Definition for singly-linked list.
 struct ListNode {
     int val;
     struct ListNode *next;
-};
+}*top;
 int size = 0;
-struct ListNode *top=NULL,*tmp1,*tmp2,*tmp3,*tmp4,*tmp2a,*tmp3a,*tmp4a;
 
-void print(struct ListNode* now){
-    now = tmp1;
+
+void print(){
+    struct ListNode* now = top;
     while(now!=NULL){
         printf("%d -> ",now->val);
         now = now->next;
@@ -35,14 +36,15 @@ int pop(){
     value = tmp->val;
     top = tmp->next;
     free(tmp);
+    size--;
     return value;
 }
 
-struct ListNode* top(){
+struct ListNode* findtop(){
     return top;
 }
 
-int size(){
+int findsize(){
     return size;
 }
 
@@ -51,31 +53,13 @@ bool empty(){
 }
 
 int main(){
-    tmp1 =(struct ListNode*)malloc(sizeof(struct ListNode));
-    tmp2 =(struct ListNode*)malloc(sizeof(struct ListNode));
-    //tmp3 =(struct ListNode*)malloc(sizeof(struct ListNode));
-    tmp3 =(struct ListNode*)malloc(sizeof(struct ListNode));
-    tmp4 =(struct ListNode*)malloc(sizeof(struct ListNode));
-    tmp3a =(struct ListNode*)malloc(sizeof(struct ListNode));
-    tmp4a =(struct ListNode*)malloc(sizeof(struct ListNode));
-
-    tmp1->val = 1;
-    tmp1->next = tmp2;
-    tmp2->val = 2;
-    tmp2->next = tmp3;
-    tmp3->val = 2;
-    tmp3->next = tmp4;
-    tmp4->val = 2;
-    tmp4->next = NULL;
-    //tmp2a->val = 3;
-    //tmp2a->next = NULL;
-    //tmp3a->val = 3;
-    //tmp3a->next = NULL;
-    //tmp4a->val = 3;
-    //tmp4a->next = NULL;
-
-    struct ListNode *head = tmp1;
-
-    print(head);
+    push(1);
+    push(2);
+    print();
+    printf("now pop:%d \n",pop());
+    print();
+    printf("now size:%d \n",findsize());
+    printf("now top:%d \n",findtop()->val);
+    printf(empty() ? "true" : "false");
     return 0;
 }
