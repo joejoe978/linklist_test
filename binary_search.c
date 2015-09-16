@@ -13,7 +13,7 @@ bool search(int line, int start, int end, int val) {
     for(i=0;i<5;i++)
         printf(" A[%d]: %d \n",i,a[i]);
 
-    while(true) {
+    while(start<=end) {
         int i = (start+end)/2;
         printf("i: %d \n",i);
         if(a[i]>val) {
@@ -25,9 +25,6 @@ bool search(int line, int start, int end, int val) {
         else {
             printf("hi\n");
             return true;
-        }
-        if(start>end) {
-            return false;
         }
     }
 }
