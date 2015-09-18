@@ -9,7 +9,7 @@ string get(string key);
 
 int main(){
 
-    char A[100] = "key=10・\0・key1=20・\0・";
+    char A[100] = "key=10\0key1=20\0";
 
     printf("A: %c \n",A[1]);
 
