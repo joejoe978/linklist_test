@@ -1,5 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define print_var(var) printf("%s: %s \n",#var,var);
+#define print_TOKEN(token) printf("#TOKEN : %d\n",token); \
+                           printf("#TOKEN2 : %d \n",token##2);
+
+#define SWAP(a,b) {a^= b ; b^= a ; a^=b;}
 
 void myitoa(int num,char*ans){
     int i=0 , flag = 1;
@@ -45,12 +50,18 @@ void reverse_char(char *s){
 }
 
 int main(){
+    int new = 100 , old = 200;
+    SWAP(new,old);
+    printf("new: %d , old: %d \n",new,old);
     //char s[] = "12345";
     char *s = "12345";
+    print_var(s);
     printf("s[2]: %c\n",*(s+2));
     printf("s[2]: %c\n",s[2]);
 
     int i = myatoi(s);
+    int i2 = 20 ;
+    print_TOKEN(i);
     printf("After atoi: %d\n",i);
     char *a = (char *)malloc(50);
     //integer to string
